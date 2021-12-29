@@ -16,7 +16,7 @@ public class Person {
     public Person() {     }
 
     public String getSummary(Person person){
-        return "Id: " + getId() + " Name: " + getFirstName() + " " + getLastName();
+        return "Id:" + getId() + " Name:" + getFirstName() + " " + getLastName();
     }
 
     public int getId() {
