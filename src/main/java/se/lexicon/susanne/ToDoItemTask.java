@@ -1,5 +1,7 @@
 package se.lexicon.susanne;
 
+import java.util.Objects;
+
 public class ToDoItemTask {
     private int id;
     private boolean assigned;
@@ -7,6 +9,7 @@ public class ToDoItemTask {
     private Person person;
 
     public ToDoItemTask(int id, boolean assigned, ToDoItem toDoItem, Person person) {
+        if(toDoItem == null){ throw new RuntimeException("toDoItem is null");}
         this.id = id;
         this.assigned = assigned;
         this.toDoItem = toDoItem;
@@ -41,6 +44,7 @@ public class ToDoItemTask {
     }
 
     public void setToDoItem(ToDoItem toDoItem) {
+        if(toDoItem == null){ throw new IllegalArgumentException("Parameter ToDoItem toDoItem  is null"); }
         this.toDoItem = toDoItem;
     }
 
@@ -50,5 +54,27 @@ public class ToDoItemTask {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    @Override
+    public String toString() {
+        return "ToDoItemTask{" +
+                "id=" + id +
+                ", assigned=" + assigned +
+                ", toDoItem=" + toDoItem +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ToDoItemTask that = (ToDoItemTask) o;
+        return id == that.id && assigned == that.assigned && toDoItem.equals(that.toDoItem);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, assigned, toDoItem);
     }
 }
